@@ -42,7 +42,7 @@ def preprocessing(cfg, t):
         RUL: The ground truth RUL values of the test set
 
     """
-    train = pd.read_csv('./Data_set' + str(t) + '/train_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
+    train = pd.read_csv('./Data/Data_set' + str(t) + '/train_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
                         decimal=".",
                         header=None)
     train.drop(train.columns[[-1, -2]], axis=1, inplace=True)
@@ -65,7 +65,7 @@ def preprocessing(cfg, t):
     else:
         train = train_scaled
 
-    test = pd.read_csv('./Data_set' + str(t) + '/test_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
+    test = pd.read_csv('./Data/Data_set' + str(t) + '/test_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
                        decimal=".",
                        header=None)
     test.drop(test.columns[[-1, -2]], axis=1, inplace=True)
@@ -87,7 +87,7 @@ def preprocessing(cfg, t):
     print(train.columns)
     print(test.columns)
 
-    RUL = pd.read_csv('./Data_set' + str(t) + '/RUL_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
+    RUL = pd.read_csv('./Data/Data_set' + str(t) + '/RUL_FD00' + str(t) + '.csv', parse_dates=False, delimiter=" ",
                       decimal=".", header=None)
     RUL.drop(RUL.columns[[-1]], axis=1, inplace=True)
     RUL.index = range(1, len(RUL) + 1)
@@ -255,7 +255,7 @@ if __name__ == "__main__":
 
         GENERATIONS = 10
         POPULATION = 20
-        SEED = eval(rep) 
+        SEED = eval(rep)
         MAX_EVAL = 5
 
         print(f'The SEED is {SEED}')
