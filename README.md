@@ -1,5 +1,7 @@
 # Automated Machine Learning for Remaining Useful Life Estimation of Aircraft Engines
 
+![MIT License](https://img.shields.io/github/license/MariosKef/automated_rul?style=plastic)
+
 ## Introduction
 
 This repository holds the source code used for the work on the paper *Automated Machine Learning for Remaining Useful Life Estimation of Aircraft Engines*
