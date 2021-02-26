@@ -57,6 +57,7 @@ def preprocessing(cfg, t):
     train_scaled['cycles'] = train.cycles.values
     train_scaled.iloc[:, 2:] = train_sensors
 
+    # Sensors/features to keep
     keep = [0, 1, 6, 7, 8, 11, 12, 13, 15, 16, 17, 18, 19, 21, 24, 25]  # 0,1 are units and cycles, respt.
 
     if t in [1, 3]:
@@ -77,6 +78,7 @@ def preprocessing(cfg, t):
     test_scaled['cycles'] = test.cycles.values
     test_scaled.iloc[:, 2:] = test_sensors
 
+    # Here we check if t belongs to FD001 or FD003
     if t in [1, 3]:
         test = test_scaled.iloc[:, keep]
     else:
@@ -253,7 +255,7 @@ if __name__ == "__main__":
 
         GENERATIONS = 10
         POPULATION = 20
-        SEED = np.random.randint(0, 2 ** 32)  # eval(rep)
+        SEED = eval(rep) 
         MAX_EVAL = 5
 
         print(f'The SEED is {SEED}')
