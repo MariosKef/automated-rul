@@ -1,27 +1,24 @@
-import logging
-import pandas as pd
-import pickle as pkl
-import numpy as np
+import multiprocessing
 import os
+import pickle as pkl
 import sys
 import time
-import multiprocessing
 
-from tsfresh import extract_features, select_features
-from tsfresh.feature_extraction import MinimalFCParameters, EfficientFCParameters
-from tsfresh.utilities.dataframe_functions import impute
-
+import numpy as np
+import pandas as pd
+import tpot.config
 from sklearn.metrics import make_scorer, mean_squared_error
 from sklearn.preprocessing import StandardScaler
-
 from tpot import TPOTRegressor
-import tpot.config
+from tsfresh import extract_features, select_features
+from tsfresh.feature_extraction import EfficientFCParameters
+from tsfresh.utilities.dataframe_functions import impute
 
 del tpot.config.regressor_config_dict['xgboost.XGBRegressor']
 
 
 # Preprocessing the dataset
-def preprocessing(cfg, t):
+def preprocessing(cfg, t, n_jobs):
     """
     This function takes loads raw sensor data
     and the ground truth RUL values of the test
@@ -35,6 +32,7 @@ def preprocessing(cfg, t):
     :param cfg: configuration file (type=[]) with the window size (index 0)
     and the initial constant RUL value (index 1)
     :param t: dataset number (1-4)
+    :param n_jobs: number of parallel jobs
     :return:
         X: The statistical features of all expanded windows of the training set
         Y: The RUL of every sample in X
@@ -140,11 +138,12 @@ def preprocessing(cfg, t):
     df_final = pd.concat(final)
     df_final.columns = cols
     df_final = df_final.astype({'cycles': 'int64'})
+    df_final = df_final.iloc[:1000,:]
 
     print(f'df_final shape is: {df_final.shape}')
 
     # extracting features from every expanding window
-    X = extract_features(df_final, column_id="unit", column_sort="cycles", n_jobs=64,
+    X = extract_features(df_final, column_id="unit", column_sort="cycles", n_jobs=n_jobs,
                          default_fc_parameters=EfficientFCParameters())
     impute(X)
 
@@ -171,7 +170,7 @@ def preprocessing(cfg, t):
 
     Y = pd.DataFrame(target_RUL, columns=['RUL'], index=range(1, len(target_RUL) + 1))
 
-    extracted_features_test = extract_features(test, column_id="unit", column_sort="cycles", n_jobs=64,
+    extracted_features_test = extract_features(test, column_id="unit", column_sort="cycles", n_jobs=n_jobs,
                                                default_fc_parameters=EfficientFCParameters())
     impute(extracted_features_test)
 
@@ -218,8 +217,10 @@ def RMSE(rul, pred_rul):
 
 if __name__ == "__main__":
     rep = sys.argv[1]
-    # Uncomment below if not using n_jobs>1 in TPOT
-    # multiprocessing.set_start_method('forkserver')
+    n_jobs = 2
+    print(n_jobs)
+    if n_jobs > 1:
+        multiprocessing.set_start_method('forkserver')
 
     output_file = 'TIM_RUN-local-' + str(rep)
     if not os.path.exists(output_file):
@@ -238,12 +239,12 @@ if __name__ == "__main__":
 
         print('Pre-processing with window size: ' + str(cfg[0]) + ' and init_rul: ' + str(cfg[1]))
 
-        X, y, subsequences, extracted_features_test, RUL = preprocessing(cfg, t)
+        X, y, subsequences, extracted_features_test, RUL = preprocessing(cfg, t, n_jobs)
         print(f"Shape of X is: {X.shape}")
 
         print('Feature selection')
 
-        X = select_features(X, y['RUL'], ml_task='regression', n_jobs=64)  # or boruta
+        X = select_features(X, y['RUL'], ml_task='regression', n_jobs=n_jobs)  # or boruta
 
         print(f"Shape of X after selection is: {X.shape}")
 
@@ -266,7 +267,7 @@ if __name__ == "__main__":
                   'wb') as f:
             pkl.dump(list(X.columns), f)
 
-        tpot = TPOTRegressor(generations=GENERATIONS, population_size=POPULATION, verbosity=3, n_jobs=64,
+        tpot = TPOTRegressor(generations=GENERATIONS, population_size=POPULATION, verbosity=3, n_jobs=n_jobs,
                              scoring=timeliness_score, max_eval_time_mins=MAX_EVAL, random_state=SEED)
 
         tpot.fit(X, y)

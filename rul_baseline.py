@@ -152,8 +152,9 @@ def RMSE(rul, pred_rul):
 
 if __name__ == "__main__":
     rep = sys.argv[1]
-
-    multiprocessing.set_start_method('forkserver')
+    n_jobs = 64
+    if n_jobs > 1:
+        multiprocessing.set_start_method('forkserver')
 
     output_file = 'Baselines_run-' + str(rep)
     if not os.path.isdir(output_file):
@@ -173,7 +174,7 @@ if __name__ == "__main__":
         print('Pre-processing with reflection point percentage: ' + str(
             cfg['reflection_point']) + '% and init_rul: ' + str(cfg['init_RUL']))
 
-        X, y, test, RUL = preprocessing(cfg, t)
+        X, y, test, RUL = preprocessing(cfg)
 
         X.drop(['unit', 'cycles'], axis=1, inplace=True)
 
@@ -191,7 +192,7 @@ if __name__ == "__main__":
 
         print(f'The SEED is {SEED}')
 
-        tpot = TPOTRegressor(generations=GENERATIONS, population_size=POPULATION, verbosity=3, n_jobs=64,
+        tpot = TPOTRegressor(generations=GENERATIONS, population_size=POPULATION, verbosity=3, n_jobs=n_jobs,
                              scoring=timeliness_score, max_eval_time_mins=MAX_EVAL, random_state=SEED)
 
         tpot.fit(X, y.values.ravel())
