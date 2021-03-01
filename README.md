@@ -15,15 +15,30 @@ This repository is the work of Marios Kefalas, PhD candidate at the Leiden Insti
 
 ## Usage
 To run the experiments you can do the following:
-	* clone the repository
-	* cd to the directory of the cloned repository
-	* For the proposed methodology run the *rul_pipeline.py* as
-		- *python<version_number> rul_pipeline.py a*, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
-	* For the baseline run the *rul_baseline.py a*, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
+* clone the repository 
+
+```git clone https://github.com/MariosKef/automated-rul.git ~/auto_rul```
+
+* cd to the directory of the cloned repository
+
+``` cd ~/auto_rul```
+
+* create the environment 
+
+``` conda create --name <env> --file requirements.txt ```. Substitute ```<env>``` with an environment name of your choice
+
+* For the proposed methodology run the *rul_pipeline.py* as
+
+``` python<version_number> rul_pipeline.py a```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
+
+* For the baseline run the *rul_baseline.py* as 
+
+``` python<version_number> rul_baseline.py a ```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
 
 **Note:** To reproduce the work in the paper use the following seeds:
-* For the proposed methodology: 2016, 2013, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
+* For the proposed methodology: 2016, 2013, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 (e.g., ```python3 rul_pipeline.py 2016```)
 * For the baseline: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+* The current source code has ```n_jobs=64```, since we used 64 cores. Please change this number accordingly.
 
 ## Acknowledgements 
 This work is part of the research programme Smart Industry SI2016 with project name CIMPLO and project number 15465, which is partly financed by the Netherlands Organisation for Scientific Research (NWO).
