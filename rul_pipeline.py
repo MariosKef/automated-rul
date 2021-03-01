@@ -138,7 +138,6 @@ def preprocessing(cfg, t, n_jobs):
     df_final = pd.concat(final)
     df_final.columns = cols
     df_final = df_final.astype({'cycles': 'int64'})
-    df_final = df_final.iloc[:1000,:]
 
     print(f'df_final shape is: {df_final.shape}')
 
