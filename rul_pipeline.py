@@ -218,7 +218,8 @@ def RMSE(rul, pred_rul):
 
 if __name__ == "__main__":
     rep = sys.argv[1]
-    multiprocessing.set_start_method('forkserver')
+    # Uncomment below if not using n_jobs>1 in TPOT
+    # multiprocessing.set_start_method('forkserver')
 
     output_file = 'TIM_RUN-local-' + str(rep)
     if not os.path.exists(output_file):
