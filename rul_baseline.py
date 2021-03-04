@@ -160,7 +160,7 @@ if __name__ == "__main__":
     if not os.path.isdir(output_file):
         os.makedirs(output_file)
 
-    for t, rul in zip([1, 2, 3, 4], [115, 135, 125, 135]):
+    for t in [1, 2, 3, 4]:
         start = time.time()
         start_cpu = time.clock()
 
@@ -169,12 +169,7 @@ if __name__ == "__main__":
         print('Corrected timeliness')
         print(f'--- Started Pipeline on dataset {t} ({date}) ---')
 
-        cfg = {'init_RUL': rul, 'reflection_point': 50}
-
-        print('Pre-processing with reflection point percentage: ' + str(
-            cfg['reflection_point']) + '% and init_rul: ' + str(cfg['init_RUL']))
-
-        X, y, test, RUL = preprocessing(cfg)
+        X, y, test, RUL = preprocessing(t)
 
         X.drop(['unit', 'cycles'], axis=1, inplace=True)
 
