@@ -37,7 +37,7 @@ To run the experiments you can do the following:
 
 **Note:** To reproduce the work in the paper use the following seeds:
 * For the proposed methodology: 2016, 2013, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 (e.g., ```python3 rul_pipeline.py 2016```)
-* For the baseline: 2013, 2, 3, 4, 5, 6, 7, 8, 9, 10
+* For the baseline: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 * The current source code has ```n_jobs=64```, since we used 64 cores. Please change this number accordingly.
 
 ## Acknowledgements 
