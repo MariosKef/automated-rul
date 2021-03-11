@@ -12,7 +12,7 @@ and recommends the usage of AutoML (in this case *TPOT*) to perform the estimati
 
 This repository is the work of Marios Kefalas, PhD candidate at the Leiden Institute of Advanced Computer Science (LIACS), Leiden University, Leiden, The Netherlands.
 
-## Usage
+## Installation
 To run the experiments you can do the following:
 * Clone the repository 
 
@@ -44,7 +44,7 @@ to install the requirements:
 
 ```python3 -m pip install -r requirements.txt```
 
-
+## Usage
 * For the proposed methodology run the *rul_pipeline.py* as
 
 ``` python3 rul_pipeline.py a```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
