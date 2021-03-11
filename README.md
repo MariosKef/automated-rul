@@ -45,7 +45,7 @@ to install the requirements:
 ```python3 -m pip install -r requirements.txt```
 
 ## Usage
-To run the experiments you can do the following:
+To run the pipelines you can do the following:
 * For the proposed methodology run the *rul_pipeline.py* as
 
 ``` python3 rul_pipeline.py a```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
