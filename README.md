@@ -13,7 +13,7 @@ and recommends the usage of AutoML (in this case *TPOT*) to perform the estimati
 This repository is the work of Marios Kefalas, PhD candidate at the Leiden Institute of Advanced Computer Science (LIACS), Leiden University, Leiden, The Netherlands.
 
 ## Installation
-To run the experiments you can do the following:
+To install the pipeline you can do the following:
 * Clone the repository 
 
 ```git clone https://github.com/MariosKef/automated-rul.git ~/auto_rul```
@@ -45,6 +45,7 @@ to install the requirements:
 ```python3 -m pip install -r requirements.txt```
 
 ## Usage
+To run the experiments you can do the following:
 * For the proposed methodology run the *rul_pipeline.py* as
 
 ``` python3 rul_pipeline.py a```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
@@ -62,7 +63,7 @@ to install the requirements:
 Some possible reasons include:
   * A different source of stochasticity in the source code of the proposed methodology (apart from *TPOT*), which has not been identified yet.
   * An internal mechanism of *TPOT* which might alter the final pipelines, despite the same seed, due to the submitted dataset.
-
+  
 The seeds on the baseline, return the same results as in the paper.
 
 ## Acknowledgements 
