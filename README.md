@@ -53,7 +53,7 @@ To run the pipelines you can do the following:
 
 * For the baseline run the *rul_baseline.py* as 
 
-``` pytho3 rul_baseline.py a ```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
+``` python3 rul_baseline.py a ```, where a is an integer that can be used to track experiments and is used as to set the random seed for reproducibility.
 
 **Note:** To reproduce the work in the paper use the following seeds (which are passed into *TPOT*):
 * For the proposed methodology: 2016, 2013, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 (e.g., ```python3 rul_pipeline.py 2016```)
