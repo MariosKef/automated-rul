@@ -1,6 +1,7 @@
 # Automated Machine Learning for Remaining Useful Life Estimation of Aircraft Engines
 
-![MIT License](https://img.shields.io/github/license/MariosKef/automated_rul?style=plastic)
+![MIT License](https://img.shields.io/github/license/MariosKef/automated_rul?style=plastic) 
+[![Python 3.6.9](https://img.shields.io/badge/python-3.6.9-green.svg?style=plastic)](https://www.python.org/downloads/release/python-369/)
 
 ## Introduction
 
