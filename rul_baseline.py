@@ -160,7 +160,7 @@ if __name__ == "__main__":
 
     for t in [1, 2, 3, 4]:
         start = time.time()
-        start_cpu = time.clock()
+        # start_cpu = time.clock()
 
         date = time.strftime("%Y%m%d_%H%M%S")
 
@@ -203,11 +203,11 @@ if __name__ == "__main__":
         print('--- The score on the test set is: ' + str(score) + ' and rmse is:' + str(rmse) + ' ---')
 
         end = time.time()
-        end_cpu = time.clock()
+        # end_cpu = time.clock()
 
         print('--- Finished ---')
         print('--- Elapsed time: ' + str((end - start) / 60) + ' minutes')
-        print('--- Elapsed cpu time: ' + str((end_cpu - start_cpu) / 60) + ' minutes')
+        # print('--- Elapsed cpu time: ' + str((end_cpu - start_cpu) / 60) + ' minutes')
 
         tpot.export(
             './' + str(output_file) + '/' + str(date) + 'tpot_cmapss_piece_wise_linear_dataset_' + str(t) + '_' + str(
