@@ -58,7 +58,7 @@ To run the pipelines you can do the following:
 **Note:** To reproduce the work in the paper use the following seeds (which are passed into *TPOT*):
 * For the proposed methodology: 2016, 2013, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 (e.g., ```python3 rul_pipeline.py 2016```)
 * For the baseline: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-* The current source code has ```n_jobs=64```, since we used 64 cores. Please change this number accordingly.
+* The current source code uses ```n_jobs=multiprocessing.cpu_count()```. If needed, please modify this at [rul_pipeline.py](https://github.com/MariosKef/automated-rul/blob/d0408445483af7ad1d1be176ee1379b53d4265b3/rul_pipeline.py#L219) and [rul_baseline.py](https://github.com/MariosKef/automated-rul/blob/d0408445483af7ad1d1be176ee1379b53d4265b3/rul_baseline.py#L155).
 
 **Update:** For the proposed methodology, the random seeds **do not** return the same results as in the paper. The reason has not been found yet.
 Some possible reasons include:
