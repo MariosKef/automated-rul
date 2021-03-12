@@ -152,9 +152,7 @@ def RMSE(rul, pred_rul):
 
 if __name__ == "__main__":
     rep = sys.argv[1]
-    n_jobs = 64
-    if n_jobs > 1:
-        multiprocessing.set_start_method('forkserver')
+    n_jobs = multiprocessing.cpu_count()
 
     output_file = 'Baselines_run-' + str(rep)
     if not os.path.isdir(output_file):
