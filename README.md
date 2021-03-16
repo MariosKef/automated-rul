@@ -39,7 +39,9 @@ With pip:
 
 to activate it:
 
-```source auto_rul/bin/activate``` (Linux)
+```source auto_rul/bin/activate``` (Linux/Unix)
+
+```source auto_rul/Scripts/activate``` (Windows)
 
 to install the requirements:
 
