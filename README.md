@@ -71,3 +71,18 @@ The seeds on the baseline, return the same results as in the paper.
 
 ## Acknowledgements 
 This work is part of the research programme Smart Industry SI2016 with project name CIMPLO and project number 15465, which is partly financed by the Netherlands Organisation for Scientific Research (NWO).
+
+## Citation
+If this was useful for your work, we would appreciate a citation of our [ICPHM-IEEE paper](https://ieeexplore.ieee.org/document/9486549).
+
+```
+@INPROCEEDINGS{9486549,
+  author={Kefalas, Marios and Baratchi, Mitra and Apostolidis, Asteris and van den Herik, Dirk and Bäck, Thomas},
+  booktitle={2021 IEEE International Conference on Prognostics and Health Management (ICPHM)}, 
+  title={Automated Machine Learning for Remaining Useful Life Estimation of Aircraft Engines}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-9},
+  doi={10.1109/ICPHM51084.2021.9486549}}
+  ```
